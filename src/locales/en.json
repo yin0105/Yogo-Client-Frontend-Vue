@@ -182,12 +182,14 @@
     "additionalInfoFieldSubtitle": "Additional info",
     "address2Label": "Address2",
     "addressLabel": "Address",
+    "addressMust": "Address must be entered",
     "alreadyHaveProfile": "Do you already have a profile?",
     "backToLogin": "Back to login",
     "birthdayLabel": "Birthday",
     "birthdayMust": "Birthday must be entered",
     "checkSpamFolder": "If you don't receive the email, please check your spam folder.",
     "cityLabel": "City",
+    "cityMust": "City must be entered",
     "countryLabel": "Country",
     "createProfile": "Create profile",
     "didYouAskForMoreLogins": "Have you requested a password reset multiple times? It is only the link in the last email that works.",
@@ -247,7 +249,8 @@
     "youNeedValidMembershipDesc": "You need a valid membership to sign up",
     "youWillBeRedirected": "You will now be redirected to the membership overview.",
     "yourProfileIsCreatedAndSubmitted": "Your profile has been created and you are signed up.",
-    "zipLabel": "Zip code"
+    "zipLabel": "Zip code",
+    "zipMust": "Zip must be entered"
   },
   "membership": {
     "autoRenewalFailed": "Automatic renewal failed!",

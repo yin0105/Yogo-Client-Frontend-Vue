@@ -182,12 +182,14 @@
     "additionalInfoFieldSubtitle": "Øvrige oplysninger",
     "address2Label": "Adresse2",
     "addressLabel": "Adresse",
+    "addressMust": "Adressen skal indtastes",
     "alreadyHaveProfile": "Har du allerede en profil?",
     "backToLogin": "Tilbage til log ind",
     "birthdayLabel": "Fødselsdato",
     "birthdayMust": "Fødselsdato skal indtastes",
     "checkSpamFolder": "Hvis du ikke modtager emailen, så husk at tjekke mappen med uønskede emails/spam.",
     "cityLabel": "By",
+    "cityMust": "By skal indtastes",
     "countryLabel": "Land",
     "createProfile": "Opret profil",
     "didYouAskForMoreLogins": "Har du bedt om at nulstille adgangskoden flere gange? Det er kun linket i den sidste e-mail der virker.",
@@ -247,7 +249,8 @@
     "youNeedValidMembershipDesc": "Du skal bruge et gyldigt medlemskab for at tilmelde dig",
     "youWillBeRedirected": "Du bliver nu stillet videre til oversigten over medlemskaber.",
     "yourProfileIsCreatedAndSubmitted": "Din profil er oprettet og du er tilmeldt.",
-    "zipLabel": "Postnummer"
+    "zipLabel": "Postnummer",
+    "zipMust": "Zip skal indtastes"
   },
   "membership": {
     "autoRenewalFailed": "Automatisk fornyelse fejlede!",

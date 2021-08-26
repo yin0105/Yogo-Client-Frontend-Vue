@@ -33,8 +33,7 @@
                 <span class="md-error" v-else-if="!$v.form.email.email">{{ $t('login.emailNotValid') }}</span>
               </md-field>
 
-              <div class="md-field" :class="getValidationClass('date_of_birth')"
-              v-if="client.settings.signup_show_date_of_birth_field">
+              <div class="md-field" :class="getValidationClass('date_of_birth')" v-if="client.settings.signup_show_date_of_birth_field">
               <label class="text__gray--medium">{{ $t('login.birthdayLabel') }}<span
                 v-if="client.settings.signup_date_of_birth_field_required"> *</span></label>
                 <md-datepicker v-model="form.date_of_birth" class="text__gray--medium">
@@ -43,32 +42,29 @@
                 </md-datepicker>
               </div>
 
-            <md-field :class="getValidationClass('phone')"
-              v-if="client.settings.signup_show_phone_field">
+            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_phone_field">
               <label>{{ $t('login.phoneLabel') }}</label>
               <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
               autocomplete="tel"></md-input>
               <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
             </md-field>
 
-            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
-              <label>{{ $t('login.phoneLabel') }}</label>
-              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required" autocomplete="tel"></md-input>
-              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            <md-field :class="getValidationClass('address_1')" v-if="client.settings.signup_show_address_fields">
+              <label>{{ $t('login.addressLabel') }}</label>
+              <md-input v-model="form.address_1" :required="client.settings.signup_address_fields_required"></md-input>
+              <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.form.address_1.required">{{ $t('login.addressMust') }}</span>
             </md-field>
 
-            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
-              <label>{{ $t('login.phoneLabel') }}</label>
-              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
-              autocomplete="tel"></md-input>
-              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            <md-field :class="getValidationClass('zip_code')" v-if="client.settings.signup_show_address_fields">
+              <label>{{ $t('login.zipLabel') }}</label>
+              <md-input v-model="form.zip_code" :required="client.settings.signup_address_fields_required"></md-input>
+              <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.form.zip_code.required">{{ $t('login.zipMust') }}</span>
             </md-field>
 
-            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
-              <label>{{ $t('login.phoneLabel') }}</label>
-              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
-              autocomplete="tel"></md-input>
-              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            <md-field :class="getValidationClass('city')" v-if="client.settings.signup_show_address_fields">
+              <label>{{ $t('login.cityLabel') }}</label>
+              <md-input v-model="form.city" :required="client.settings.signup_address_fields_required"></md-input>
+              <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.form.city.required">{{ $t('login.cityMust') }}</span>
             </md-field>
 
             <md-field :class="getValidationClass('password')">
@@ -246,6 +242,9 @@
             'password',
             'date_of_birth',
             'phone',
+            'address_1',
+            'zip_code',
+            'city',
           ],
         )
 
@@ -255,6 +254,7 @@
         userData.emailConfirmationLink = this.emailConfirmationLink
 
         this.loading = true
+
 
         const response = await YogoApi.post('/users', userData)
 
@@ -324,6 +324,17 @@
       }
       if (this.client.settings.signup_show_phone_field && this.client.settings.signup_phone_field_required) {
         v.form.phone = {
+          required,
+        }
+      }
+      if (this.client.settings.signup_show_address_fields && this.client.settings.signup_address_fields_required) {
+        v.form.address_1 = {
+          required,
+        }
+        v.form.zip_code = {
+          required,
+        }
+        v.form.city = {
           required,
         }
       }
