@@ -43,8 +43,28 @@
                 </md-datepicker>
               </div>
 
-              <md-field :class="getValidationClass('phone')"
+            <md-field :class="getValidationClass('phone')"
               v-if="client.settings.signup_show_phone_field">
+              <label>{{ $t('login.phoneLabel') }}</label>
+              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
+              autocomplete="tel"></md-input>
+              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            </md-field>
+
+            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
+              <label>{{ $t('login.phoneLabel') }}</label>
+              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required" autocomplete="tel"></md-input>
+              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            </md-field>
+
+            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
+              <label>{{ $t('login.phoneLabel') }}</label>
+              <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
+              autocomplete="tel"></md-input>
+              <span class="md-error" v-if="client.settings.signup_phone_field_required && !$v.form.phone.required">{{ $t('login.phoneMust') }}</span>
+            </md-field>
+
+            <md-field :class="getValidationClass('phone')" v-if="client.settings.signup_show_address_fields">
               <label>{{ $t('login.phoneLabel') }}</label>
               <md-input v-model="form.phone" :required="client.settings.signup_phone_field_required"
               autocomplete="tel"></md-input>
