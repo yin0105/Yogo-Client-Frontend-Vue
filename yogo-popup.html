@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf8">
+    <script>
+        var startupMessage;
+        var popupReady;
+
+        /*
+        Let parent know that this frame is ready as soon as possible
+        We can't know if we'll get back the startupMessage from parent first or this DOM will be initialized first. Both need to happen before init().
+        So we handle both cases.
+         */
+
+        function receivedMessage (event) {
+            if (popupReady) {
+                init(event.data);
+            } else {
+                startupMessage = event.data;
+            }
+        }
+
+        if (!!(window.addEventListener)) {
+            window.addEventListener('message', receivedMessage);
+        } else {
+            window.attachEvent('message', receivedMessage);
+        }
+
+        window.parent.postMessage(
+            JSON.stringify({yogoMessageFromPopup : 'readyForMessage'}),
+            '*'
+        );
+
+    </script>
+
+
+
+    <style>
+        body {
+            font-family:arial, sans-serif;
+        }
+
+        .close-popup-button {
+            position:absolute;
+            right:0;
+            top:0;
+            font-size:30px;
+            padding:10px;
+        }
+    </style>
+
+    <!-- jQuery just temporary solution until vue.js is implemented -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+
+        $(function() {
+
+            if (startupMessage) {
+                init(startupMessage);
+            } else {
+                popupReady = true;
+            }
+
+        });
+
+        function init(message) {
+            // DOM is loaded and we have the startup message from parent window
+            $('.message').html(message);
+            $('.close-popup-button').on('click', closePopup);
+        }
+
+        function closePopup() {
+            window.parent.postMessage(
+                JSON.stringify({yogoMessageFromPopup : 'closePopup'}),
+                '*'
+            );
+        }
+
+    </script>
+</head>
+<body>
+
+<h2>Popup</h2>
+<div class="message">
+
+</div>
+<button class="close-popup-button">X</button>
+
+</body>
+</html>

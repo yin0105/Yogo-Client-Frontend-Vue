@@ -1,0 +1,40 @@
+/**** IE 10 and 11 styles ****/
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+
+  .md-app-container
+    height 100vh
+
+  .md-field.md-required
+    label::after
+      right -10px
+
+  .header
+    height 80px !important
+
+  .ie--center
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+
+  .header__logo--client,
+  .header__content--right
+    top 50%
+    transform translate(0, -50%)
+
+  .md-dialog
+    display block
+    height 80%
+
+  .modal-content
+    max-height calc(80vh - 50px)
+
+  .md-field.md-required
+    label::after
+      right -10px
+
+  .md-table
+    display block
+
+

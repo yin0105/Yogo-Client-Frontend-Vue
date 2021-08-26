@@ -1,0 +1,173 @@
+/**** buttons ****/
+
+.btn
+  border-radius 0 !important
+  color $black !important
+  font-weight bold
+  cursor pointer
+
+button
+  margin 0
+  border 0
+  background 0
+
+.btn-small
+  font-size $small
+  text-transform uppercase
+  line-height 1
+  padding 0
+  margin 0
+  cursor pointer
+  font-weight bold
+
+
+.primary-color-border,
+.primary-color-border.md-button
+  background none
+  border 1px solid
+  box-shadow none
+  font-weight normal
+  font-size $body
+
+  &:hover
+    /*box-shadow none !important*/
+    /*background $blueHeartcore !important*/
+    color $white !important
+
+    a
+      color $white
+
+  div
+    a
+      &:hover
+        color $white !important
+
+.btn--menu
+  /*font-family "Gotham SSm A", "Gotham SSm B", sans-serif*/
+  letter-spacing 1px
+  font-weight 300 !important
+
+  a
+    color $black !important
+    font-weight 300 !important
+    font-size $small
+
+    &:hover
+      cursor pointer
+
+
+.btn--facebook
+  background $blueFacebook
+
+  span
+    font-size 1em !important
+    margin-right 10px
+
+  &:hover
+    background lighten($blueFacebook, 10%)
+
+.close-frontend-button
+  cursor pointer
+  position fixed
+  top 10px
+  right 21px
+  font-size 20px
+  color $black !important
+  background rgba(255,255,255,0.5);
+  z-index 10
+  width 40px
+  height 40px
+  display flex
+  justify-content center
+  align-items center
+  border-radius 50%
+
+.close-signup-modal
+  @extend .close-frontend-button
+  z-index 21
+  color $black !important
+
+.picker__nav--next,
+.picker__nav--prev
+
+  &:hover
+    background none
+
+.profile__image--edit
+  width 100px
+  height 100px
+  position relative
+
+  img
+    position absolute
+    border-radius 50%
+    width 100%
+    height 100%
+
+  .overlay--edit
+    display flex
+    align-items center
+    justify-content center
+    position absolute
+    bottom 0
+    background rgba(255, 255, 255, .5);
+    width 100%
+    height 50%
+    border-radius 0 0 100px 100px
+
+    input
+      width 100%
+      height 100%
+      opacity 0
+      overflow hidden
+      position absolute
+      cursor pointer
+
+// .md-primary,
+.btn-primary
+  color $black !important
+  font-weight bold
+  margin-right 10px !important
+  border 2px solid $black
+  text-align: center
+  font-size 14px
+  cursor pointer
+  text-transform none
+  height auto
+  padding 10px 20px
+  transition .3s ease background
+  &:last-of-type
+    margin-right 0 !important
+
+  &:hover
+    background darken($white, 5%)
+
+.btn-secondary
+  @extend .btn-primary
+  font-size 12px
+  padding 6px 16px
+  display inline-block
+  color inherit !important
+  border-color inherit
+
+.md-button-content
+  @extend .btn-primary
+  padding 7px 20px
+  font-weight bold !important
+  text-transform uppercase
+
+button:disabled
+  opacity .5
+
+.md-icon-button
+  div
+    border 0
+    &:hover
+      border 0 !important
+      background none
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  .primary-color-border
+    width auto

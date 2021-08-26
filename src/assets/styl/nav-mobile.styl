@@ -1,0 +1,117 @@
+/**** mobile navigation ****/
+
+#CircleMenu
+  display none
+
+.menu--mobile
+  position fixed
+  bottom 0
+  right 0
+  left 0
+  height 80px
+  flex 0 0 50px
+  background $white
+  display flex
+  border-top 1px solid $grayLight
+  align-items center
+  z-index 20
+
+  .item
+    text-align center
+    font-size 12px
+    flex 1 0 auto
+    -webkit-tap-highlight-color alpha(#fff, 0)
+
+  a
+    color $black !important
+    opacity .5
+
+  .item-icon
+    display block
+    margin 0 auto 4px
+    width 20px
+    height @width
+
+
+.oy-menu-btn
+  width 60px !important
+  height 60px !important
+
+.oy-menu-group
+
+  // overwriting vue mobile menu plugin
+
+  .yellow,
+  .green,
+  .blue,
+  .purple
+    background $white !important
+    color $black !important
+
+  .pink
+    background $black !important
+
+.icon-bars
+  background none !important
+  display flex !important
+  justify-content center !important
+  align-items center !important
+
+  &:before
+    color $white
+    content '\e900' !important
+    font-size 18px
+
+  &:after
+    display none !important
+
+.middle-around .oy-menu-group.open .btn-list .oy-menu-item.oy-menu-item_1
+  left -95px !important
+
+.middle-around .oy-menu-group.open .btn-list .oy-menu-item.oy-menu-item_4
+  top -75px !important
+  left -48px !important
+
+.middle-around .oy-menu-group.open .btn-list .oy-menu-item.oy-menu-item_3
+  top -75px !important
+  left 50px !important
+
+.middle-around .oy-menu-group.open .btn-list .oy-menu-item.oy-menu-item_2
+  left 95px !important
+
+.icon-scheme2,
+.icon-membership,
+.icon-event
+
+  &:before
+    font-size 30px
+
+.oy-menu-item
+  width 60px !important
+  height 60px !important
+
+  div
+    display flex
+    line-height 1
+    justify-content center
+    align-items center
+    height 60px
+
+    span
+      width 30px
+      height 30px
+      display block
+
+    img
+      width 60px
+      height 60px
+      border-radius 50%
+      border 6px solid $white
+      max-width none
+
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  .menu--mobile
+    display none

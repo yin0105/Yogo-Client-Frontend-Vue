@@ -1,0 +1,95 @@
+/**** navigation ****/
+
+.menu--desktop
+  display none
+
+.header__menu--user
+
+  p
+    margin-right 10px
+
+  img
+    width 30px
+    height 30px
+    border-radius 50%
+
+.flex__top--right .header__cart--container
+  display none
+
++for_breakpoint(mobile-big)
+  .flex__top--right .header__cart--container
+    display flex
+
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  .menu--desktop
+    position relative
+    display flex
+    height 60px
+    align-items center
+    justify-content center
+
+    ul
+      display block
+      font-size $body
+
+      li
+        display inline-block
+        margin-right 20px
+        a
+          letter-spacing 1px
+          font-weight bold
+          font-size 14px
+          color $black !important
+          text-decoration none
+          border-bottom 2px solid transparent
+          transition (.2s ease)
+          padding 10px 0
+
+          &:hover
+            border-bottom 2px solid $gray
+
+        .router-link-active
+          padding-bottom 10px
+          border-bottom 2px solid $black
+
+    .header__menu--user
+      display flex
+      align-items center
+      cursor pointer
+
+      p
+        margin-right 10px
+
+      img
+        width 40px
+        height 40px
+        border-radius 50%
+
+      span
+        font-size $small
+        padding-left 10px
+
+    .header__content--right
+      position absolute
+      right 0
+      display flex
+      flex-direction row
+      align-items center
+
+    .header__cart--container
+      display flex
+      padding-right 10px
+
+      span
+        color $black
+
+  .dropdown-content
+    li
+      width 300px
+      a
+        font-size $small
+        height 20px
+        border none !important

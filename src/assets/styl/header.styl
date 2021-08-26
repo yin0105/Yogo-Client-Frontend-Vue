@@ -1,0 +1,60 @@
+/**** header ****/
+
+.header
+  a
+    font-weight bold
+  ul
+    list-style-type none
+    padding 0
+
+  .header__logo--client
+    display flex
+    width 120px
+    position relative
+    z-index 1
+
+    img.logo-svg
+      width auto
+      height 48px
+
+    div.logo-bitmap
+      width 96px
+      height 48px
+      background-position 50% 50%
+      background-size contain
+      background-repeat no-repeat
+
+  .md-menu
+    max-width calc(100% - 100px)
+
+    p
+      text-align right
+
+
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  .header
+
+    .header__logo--client
+      position absolute
+      left 0
+      width 170px
+
+      img
+        width 80px
+        height 40px
+
+      img.logo-svg
+        width auto
+        height 48px
+
++for_breakpoint(desktop)
+
+  .header
+
+    .header__logo--client
+      position absolute
+      left 0
+      width 250px

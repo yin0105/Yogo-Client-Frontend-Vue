@@ -1,0 +1,216 @@
+/**** materialized ****/
+
+iframe:not(.md-image)
+  height 100% !important
+
+.md-menu-content-container
+  background $white
+
+.md-dialog-container
+  background: $white
+  -webkit-overflow-scrolling touch
+
+  h1
+    font-size 1.4em
+    margin-bottom 20px
+
+  h2
+    font-size 1.2em
+
+.md-dialog-content p {
+  max-width:960px;
+}
+
+.md-dialog-actions
+  padding-bottom 20px
+
+.md-datepicker.not-clearable
+  .md-button-content
+    display none
+
+.md-menu.md-select
+  border 1px solid $gray
+  padding 5px 10px
+  margin-top 5px
+
+.md-field.md-theme-default:before
+  background-color $grayDarkMedium !important
+
+.md-tooltip
+  background $white !important
+  color $black !important
+
+
+.md-invalid
+
+  label,
+  input
+    color $redError
+
+  .md-datepicker
+
+    i
+      svg
+        path:first-of-type
+          fill $redError
+
+    &:after
+      background $redError
+
+.md-error
+  color $redError
+
+.checkbox__label--validation
+  &:before,
+  &:after
+    background none !important
+
+  label
+    margin-top -20px
+
+.md-snackbar.md-theme-default
+  /*background $blueHeartcore*/
+  z-index 100
+
+.imagefield-wrapper {
+  margin-top:75px;
+}
+
+.md-field.image-upload-field
+
+  &[data-image-format="profile-image"]
+
+    .profile__image--edit
+      position absolute
+      width 75px
+      top 0
+
+      img
+        width 75px
+        height 75px
+        border-radius 50%
+
+      .overlay--edit
+        background rgba(255, 255, 255, 0.5)
+        position absolute
+        display flex
+        height 50%
+        border-radius 0 0 50px 50px
+        bottom 0
+        text-align center
+        justify-content center
+        align-items center
+        width 100%
+  &:after,
+  &:before
+    background transparent !important
+
+  .md-file
+    z-index 20
+    position absolute
+    bottom 0
+    width 75px
+    height 75px
+    .md-icon
+      width 100px
+      height 100px
+
+      svg
+        fill transparent !important
+
+
+.md-has-file
+  .md-file
+    outline none !important
+    i
+      width 100%
+      position relative
+      top 0
+      svg
+        display none
+
+
+  &:after,
+  &:before
+    background transparent !important
+
+
+.dropdown-content
+  max-width none !important
+
+.md-progress-spinner.image-upload-progress
+  position absolute;
+  top 0
+  left 0
+
+button.md-button
+  font-size 11px
+
+.md-has-file
+  &:after,
+  &:before
+    height 0 !important
+
+.md-datepicker-dialog.md-theme-default,
+.md-menu-content.md-select-menu
+  z-index 200
+  background #fff
+
+
+.md-select-menu
+  .md-scrollbar
+    -webkit-overflow-scrolling touch
+
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  .md-dialog-actions
+    margin-bottom 0
+
+  .profile__image--edit
+    position absolute
+    width 100px
+    bottom 0
+    top auto
+
+    img
+      width 100px
+      height 100px
+      border-radius 50%
+
+    .overlay--edit
+      background rgba(255, 255, 255, 0.5)
+      position absolute
+      display flex
+      height 50%
+      border-radius 0 0 50px 50px
+      bottom 0
+      text-align center
+      width 100%
+
+  .md-file
+    top auto
+    bottom 0
+    width 100px
+    height 100px
+
+    .md-icon
+      width 100px
+      height 75px
+
+  .md-progress-spinner.image-upload-progress
+    position absolute;
+    top auto
+    bottom 0
+
+
+  button.md-button
+    font-size $body
+
+.md-theme-default a
+  color $black !important
+
+.md-snackbar
+  background $black
+  color $white

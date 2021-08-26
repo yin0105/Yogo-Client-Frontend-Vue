@@ -1,0 +1,48 @@
+/**** forms ****/
+
+// show default select on mobile
+
+select
+  display block
+
+input.select-dropdown
+  display none !important
+
+span.caret
+  display none
+
+.dropdown-content
+  li
+    span
+      color $black
+
+// datepicker
+
+.picker__date-display
+  background $black
+
+.picker__close,
+.picker__today,
+.picker__clear
+  color $black
+
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected
+  background $black
+
+
+/**** desktop and up ****/
+
++for_breakpoint(desktop)
+
+  select
+    display none
+
+  input.select-dropdown
+    display block !important
+
+  span.caret
+    display block
+
+

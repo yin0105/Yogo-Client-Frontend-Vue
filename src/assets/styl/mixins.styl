@@ -1,0 +1,83 @@
+media_queries = {
+  narrow        : "(max-height: 428px)",
+  narrow-mobile : "(max-height: 667px) and (max-width: 667px)",
+  semi-narrow   : "(max-height: 700px)",
+  mobile        : "(max-width: 767px)",
+  tablet-down   : "(max-width: 768px)",
+  mobile-big    : "(min-width: 375px)",
+  tablet        : "(min-width: 768px)",
+  tablet-wide   : "(min-width: 1024px)",
+  desktop       : "(min-width: 1030px)"
+  desktop-big   : "(min-width: 1260px)"
+}
+
+for_breakpoint(breakpoints)
+  conditions = ()
+  for breakpoint in breakpoints
+    push(conditions, media_queries[breakpoint])
+  conditions = join(", ", conditions)
+  @media conditions
+    {block}
+
+transition($args)
+  transition $args
+
+animation ($args)
+  animation $args
+
+@keyframes fadein
+  from
+    opacity 0
+  to
+    opacity 1
+
+@keyframes fadeinout
+  0%
+    opacity 0
+  50%
+    opacity 1
+  100%
+    opacity 0
+
+@keyframes fadeout
+  from
+    opacity 1
+  to
+    opacity 0
+
+@keyframes check
+  from
+    stroke-dashoffset 180
+  to
+    opacity 1
+    stroke-dashoffset 0
+
+@keyframes check
+  from
+    stroke-dashoffset 180
+  to
+    opacity 1
+    stroke-dashoffset 0
+
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px $black;
+  }
+}
+

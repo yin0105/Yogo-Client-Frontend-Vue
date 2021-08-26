@@ -1,0 +1,50 @@
+/**** widget ****/
+
+.square--blue
+  position relative
+  padding 0 10px 0 40px
+
+  &:before
+    position absolute
+    background $blueHeartcore
+    content ''
+    left 0
+    height 15px
+    width 30px
+
+.square--gray
+  @extend .square--blue
+
+  &:before
+    background $grayLight
+
+
+.widget
+  // border 1px solid #eee
+  padding 20px 0
+
+.widget__list--standard
+
+  p
+    margin 4px 0
+
+  li
+    margin-top 10px
+
+    &.class-cancelled
+      color $red
+
+/**** tablet and up ****/
+
++for_breakpoint(tablet)
+
+  // .widget
+  //   width 32%
+
+/**** desktop and up ****/
+
++for_breakpoint(desktop)
+
+  // .widget
+  //   padding-right 20px
+  //   width 70%

@@ -1,0 +1,165 @@
+/**** calendar ****/
+
+.schedule.theme--frame-box
+  padding 20px
+
+.cd-schedule
+  .events
+    .top-info
+      margin-bottom 10px
+      background $white
+      div
+        text-align left !important
+
+.calendar__week--nav
+  width 160px
+  text-align center
+
+.cd-schedule
+  width 100% !important
+
+  li
+    box-shadow none !important
+
+    .top-info
+      display flex !important
+      flex-direction column
+      justify-content center
+
+    a
+      color $white !important
+
+.single-event
+  border 1px solid $white
+  transition (.3s ease)
+  overflow hidden
+  text-align center
+
+  &.class-has-started a
+    cursor:default
+
+  &:hover
+    z-index 10 !important
+
+  .event-name
+    font-size $small !important
+    line-height 1
+    text-transform uppercase
+    color inherit !important
+
+  .event-date
+    opacity 1 !important
+    margin 0 !important
+    color inherit !important
+
+  p
+    font-size $small
+    line-height 1
+    margin 0
+
+  a
+    color $white
+    display flex !important
+    padding 5px 15px !important
+    flex-direction column
+    justify-content space-around
+    cursor pointer
+
+    div
+      padding 0 1px
+
+  &.class-cancelled a
+    color #999 !important
+
+  span
+    font-weight normal !important
+    font-size $small !important
+
+.events-group
+  .top-info,
+  ul
+    padding 0 !important
+
+.check-center
+  width 25px
+  margin 5px auto 0
+  line-height 0
+
+.material-tooltip
+  display none
+
+.date--calendar
+  display flex
+  align-self flex-end
+
+  .date--arrows
+    display flex
+    align-items center
+    justify-content space-around
+    width 100px
+    font-size $medium
+    cursor pointer
+
+.class-item
+  .class-action
+    button
+      width 100%
+
+.events-group
+    flex 1
+
+/**** tablet and down ****/
+
++for_breakpoint(tablet-down)
+
+  .cd-schedule
+    .events
+      .single-event
+        transform none !important
+
+/**** end tablet and down ****/
+
+/**** desktop and up ****/
+
++for_breakpoint(tablet-wide)
+
+  .cd-schedule
+    .events
+      .top-info
+        margin-bottom 0
+        div
+          text-align center !important
+
+  .material-tooltip
+    display block
+    max-width 500px
+
+  .date--calendar
+    width auto
+
+/**** desktop and up ****/
+
++for_breakpoint(desktop)
+
+  .calendar__dates--sticky
+    position fixed
+    top 0
+    margin-left 0px
+    width 142px !important
+    background rgba(255, 255, 255, 0.97)
+    z-index 20
+
+  .calendar__margin--top
+    padding-top 60px
+
+  .current-day
+    .calendar__dates--sticky
+      background #f8f8f8
+
+
+/**** desktop big and up ****/
+
++for_breakpoint(desktop-big)
+
+  .calendar__dates--sticky
+    width 171px !important

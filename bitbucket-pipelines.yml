@@ -1,0 +1,65 @@
+image: node:14
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script:
+          - echo Ok
+          #- npm install
+          #- npm test # No tests so far. Leaving this and hope to make them some day.
+  branches:
+    staging:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update
+            - apt-get install -y ruby-full
+            - apt-get install -y default-jre
+            - gem install s3_website
+            - yarn
+            - rm -f env_config.js
+            - "echo export default { > ./env_config.js"
+            - "echo apiRoot: '\"https://api-staging.yogo.dk\"',  >> ./env_config.js"
+            - "echo imageServerImgix: '\"yogo-staging.imgix.net\"', >> ./env_config.js"
+            - "echo vueMaterialThemeCssServer: '\"https://vue-material-theme-css-staging.yogo.dk\"' >> ./env_config.js"
+            - "echo } >> ./env_config.js"
+            - cat env_config.js
+            - yarn run build
+            - "echo s3_id: ${S3_ACCESS_KEY_ID_STAGING} > ./s3_website.yml"
+            - "echo s3_secret: ${S3_ACCESS_KEY_SECRET_STAGING} >> ./s3_website.yml"
+            - "echo s3_bucket: app-staging.yogo.dk >> ./s3_website.yml"
+            - "echo s3_key_prefix: frontend >> ./s3_website.yml"
+            - "echo site: dist/ >> ./s3_website.yml"
+            - "echo cloudfront_distribution_id: $CLOUDFRONT_DISTRIBUTION_ID_STAGING >> ./s3_website.yml"
+            - "echo cloudfront_wildcard_invalidation: true >> ./s3_website.yml"
+            - s3_website push
+    production:
+      - step:
+          caches:
+            - node
+          script:
+            - apt-get update
+            - apt-get install -y ruby-full
+            - apt-get install -y default-jre
+            - gem install s3_website
+            - yarn
+            - rm -f env_config.js
+            - "echo export default { > ./env_config.js"
+            - "echo apiRoot: '\"https://api.yogo.dk\"', >> ./env_config.js"
+            - "echo imageServerImgix: '\"yogo.imgix.net\"', >> ./env_config.js"
+            - "echo vueMaterialThemeCssServer: '\"https://vue-material-theme-css.yogo.dk\"', >> ./env_config.js"
+            - "echo productionPayments: true >> ./env_config.js"
+            - "echo } >> ./env_config.js"
+            - cat env_config.js
+            - yarn run build
+            - "echo s3_id: ${S3_ACCESS_KEY_ID_PRODUCTION} > ./s3_website.yml"
+            - "echo s3_secret: ${S3_ACCESS_KEY_SECRET_PRODUCTION} >> ./s3_website.yml"
+            - "echo s3_bucket: app.yogo.dk >> ./s3_website.yml"
+            - "echo s3_key_prefix: frontend >> ./s3_website.yml"
+            - "echo site: dist/ >> ./s3_website.yml"
+            - "echo cloudfront_distribution_id: $CLOUDFRONT_DISTRIBUTION_ID_PRODUCTION >> ./s3_website.yml"
+            - "echo cloudfront_wildcard_invalidation: true >> ./s3_website.yml"
+            - s3_website push
