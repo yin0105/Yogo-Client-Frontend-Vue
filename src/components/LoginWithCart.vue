@@ -97,6 +97,24 @@
                         v-if="client.settings.signup_phone_field_required && !$v.signupForm.phone.required">{{ $t('login.phoneMust') }}</span>
                 </md-field>
 
+                <md-field :class="getSignupValidationClass('address_1')" v-if="client.settings.signup_show_address_fields">
+                  <label>{{ $t('login.addressLabel') }}</label>
+                  <md-input v-model="signupForm.address_1" :required="client.settings.signup_address_fields_required"></md-input>
+                  <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.signupForm.address_1.required">{{ $t('login.addressMust') }}</span>
+                </md-field>
+
+                <md-field :class="getSignupValidationClass('zip_code')" v-if="client.settings.signup_show_address_fields">
+                  <label>{{ $t('login.zipLabel') }}</label>
+                  <md-input v-model="signupForm.zip_code" :required="client.settings.signup_address_fields_required"></md-input>
+                  <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.signupForm.zip_code.required">{{ $t('login.zipMust') }}</span>
+                </md-field>
+
+                <md-field :class="getSignupValidationClass('city')" v-if="client.settings.signup_show_address_fields">
+                  <label>{{ $t('login.cityLabel') }}</label>
+                  <md-input v-model="signupForm.city" :required="client.settings.signup_address_fields_required"></md-input>
+                  <span class="md-error" v-if="client.settings.signup_address_fields_required && !$v.signupForm.city.required">{{ $t('login.cityMust') }}</span>
+                </md-field>
+
                 <md-field :class="getSignupValidationClass('password')">
                   <label>{{ $t('login.passwordLabel') }}</label>
                   <md-input required id="password" type="password" v-model="signupForm.password"
@@ -678,6 +696,9 @@
             'email',
             'password',
             'phone',
+            'address_1',
+            'zip_code',
+            'city',
           ],
         )
 
@@ -1105,6 +1126,17 @@
       }
       if (this.client.settings.signup_date_of_birth_field_required) {
         v.signupForm.date_of_birth = {
+          required,
+        }
+      }
+      if (this.client.settings.signup_show_address_fields && this.client.settings.signup_address_fields_required) {
+        v.signupForm.address_1 = {
+          required,
+        }
+        v.signupForm.zip_code = {
+          required,
+        }
+        v.signupForm.city = {
           required,
         }
       }
