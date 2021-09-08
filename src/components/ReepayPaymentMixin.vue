@@ -20,6 +20,8 @@ export default {
 
       const result = await YogoApi.post('/payments/reepay/create-order-and-matching-session-type');
 
+      console.log("result = ", result)
+
       if (result === 'E_INVALID_CART_ITEM') {
         alert(this.$t('checkout.oneOrMoreCartItemsAreNoLongerAvailable'));
         await this.$store.dispatch('updateUser');

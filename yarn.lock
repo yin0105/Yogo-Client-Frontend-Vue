@@ -958,6 +958,11 @@
   resolved "https://registry.yarnpkg.com/@soda/get-current-script/-/get-current-script-1.0.2.tgz#a53515db25d8038374381b73af20bb4f2e508d87"
   integrity sha512-T7VNNlYVM1SgQ+VsMYhnDkcGmWhQdL0bDyGm5TlQ3GBXnJscEClUUOKduWTmm2zCnvNLC1hc3JpuXjs/nFOc5w==
 
+"@stripe/stripe-js@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.17.1.tgz#afcb7e86d0b05d1a7af53af89111abd2e8d437ae"
+  integrity sha512-c9MyDvdi5Xou0j0JPNy86NebtTDfh9o62Ifuzx6GSm2YO0oedBpy51WSyOue2L8Fb+mqESS5gd6mGVEIPUnXsA==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -9686,6 +9691,11 @@ vue-slide-up-down@^1.4.1:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/vue-slide-up-down/-/vue-slide-up-down-1.7.2.tgz#88bcea3203eb054a44f4eba1bc77062d555db3d6"
   integrity sha512-y7vpjKNfjQGdKiLTZyonNZbWjtzyEA9nGXIK8wojJvGQapHi7EsLcWAYOQHJ1dE70FrpbAyMP6OIV3xRJEwXkg==
+
+vue-stripe-checkout@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/vue-stripe-checkout/-/vue-stripe-checkout-1.1.6.tgz#e0531cc2c08f3da23419993415802e208ba91549"
+  integrity sha512-Rr7z+0njTgmrAk/dMwZPGa8JTUg2gfmrlHJwIL1edys2JhS339JQCEVbEUE4vh12Xnn52t6I/M5woRkrVd1o/A==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
   version "4.1.2"

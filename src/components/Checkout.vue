@@ -165,6 +165,8 @@
       {{ removedItemName }} {{ $t('checkout.isRemovedFromBasket') }}
     </md-snackbar>
 
+    <StripeCheckout_></StripeCheckout_>
+
   </div>
 </template>
 
@@ -178,10 +180,16 @@ import _find from 'lodash/find';
 import _sortBy from 'lodash/sortBy';
 import Loadingspinner from "./LoadingSpinner.vue";
 import ReepayPaymentMixin from './ReepayPaymentMixin';
+import StripePaymentMixin from './StripePaymentMixin';
+import StripeCheckout_ from './StripeCheckout_';
+import Vue from "vue";
+import VueStripeCheckout from "vue-stripe-checkout";
+
+Vue.use(VueStripeCheckout, "pk_test_MtmVvwBMKA98Zh2WZLPPwRPV");
 
 export default {
-  components: { Loadingspinner },
-  mixins: [ReepayPaymentMixin],
+  components: { Loadingspinner, StripeCheckout_},
+  mixins: [ReepayPaymentMixin, StripePaymentMixin],
   data() {
     return {
       showTermsDialog: false,
@@ -302,7 +310,13 @@ export default {
     startPayment() {
       switch (this.client.settings.payment_service_provider) {
         case 'reepay':
+          console.log("reepay");
           this.reepayStartPayment();
+          break;
+
+        case 'stripe':
+          console.log("stripe");
+          this.stripeStartPayment();
           break;
       }
     },

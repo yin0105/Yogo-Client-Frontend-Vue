@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@cometchat-pro/chat": "^2.1.7",
+    "@stripe/stripe-js": "^1.17.1",
     "@vimeo/player": "^2.11.0",
     "autoprefixer": "^9",
     "axios": "^0.17.1",
@@ -50,6 +51,7 @@
     "vue-nl2br": "^0.1.2",
     "vue-router": "^3.0.1",
     "vue-slide-up-down": "^1.4.1",
+    "vue-stripe-checkout": "1.1.6",
     "vuelidate": "^0.6.1",
     "vuex": "^3.0.1",
     "xmlhttprequest": "^1.8.0"
