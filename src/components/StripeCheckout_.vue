@@ -23,8 +23,8 @@
       'overflow': 'auto'
     }">
       <form id="payment-form" @submit.prevent="checkoutSubmit" v-bind:style="{margin: 'auto', backgroundColor: 'antiquewhite'}">
-        <div id="card-element"></div>
-        <button  id="btnPayNow" type="submit" @click="checkoutSubmit" >
+        <div id="card-element" class="overflow-hidden"></div>
+        <button  id="btnPayNow" type="submit" @click="checkoutSubmit" :disabled="buttonDisabled" >
           <div v-if="spin" class="spinner" id="spinner"></div>
           <span v-else id="button-text">Pay now</span>
         </button>
@@ -106,14 +106,22 @@ export default {
       document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
     },
 
-    async checkoutSubmit() {
+    async checkoutSubmit(event) {
+      event.preventDefault();
+      this.buttonDisabled = false;
       console.log("submit");
       await this.payWithCard();
     },
 
     async payWithCard () {
+
+      if (!this.stripe || !this.card) {
+        // Stripe.js has not yet loaded.
+        // Make sure to disable form submission until Stripe.js has loaded.
+        return;
+      }
       this.checkoutLoading(true);
-      
+      this.buttonDisabled = false;
       this.stripe.confirmCardPayment(this.clientSecret, {
           payment_method: {
             card: this.card
