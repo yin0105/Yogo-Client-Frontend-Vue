@@ -339,6 +339,7 @@ export default {
     async getMembership() {
 
       const membership = await YogoApi.get('/memberships?id=' + this.$route.params.id +
+          '&user=' + this.user.id +
           '&populate[]=payment_option' +
           '&populate[]=membership_type' +
           '&populate[]=membership_type.payment_options' +
@@ -363,6 +364,8 @@ export default {
         this.selectedPaymentOption = membership.payment_option.id;
       }
 
+      console.log("this.membership = ", this.membership)
+      console.log("this.user = ", this.user)
       this.membership.orders = _sortBy(this.membership.orders, order => -order.invoice_id);
 
       if (this.membership.real_user_is_someone_else) {

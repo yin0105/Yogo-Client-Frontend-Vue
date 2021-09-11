@@ -254,8 +254,12 @@
         return _filter(this.membershipTypes, membershipType => _includes(_map(membershipType.price_groups, 'id'), this.selectedPriceGroup))
       },
       filteredClassPassTypes() {
+        console.log("this.priceGroups.length = ", this.priceGroups.length)
         if (!this.priceGroups.length) return this.classPassTypes
+        console.log("this.selectedPriceGroup = ", this.selectedPriceGroup)
         if (!this.selectedPriceGroup) return []
+        console.log("this.selectedPriceGroup = ", this.selectedPriceGroup)
+        console.log("fitered data = ", _filter(this.classPassTypes, classPassType => _includes(_map(classPassType.price_groups, 'id'), this.selectedPriceGroup)))
         return _filter(this.classPassTypes, classPassType => _includes(_map(classPassType.price_groups, 'id'), this.selectedPriceGroup))
       },
       showGiftCard() {
@@ -308,9 +312,15 @@
           ),
         ])
 
+        console.log("membershipTypes = ", membershipTypes)
+        console.log("classPassTypes = ", classPassTypes)
+
         this.membershipTypes = _keyBy(membershipTypes, 'id')
 
         this.classPassTypes = _keyBy(classPassTypes, 'id')
+
+        console.log("membershipTypes = ", this.membershipTypes)
+        console.log("classPassTypes = ", this.classPassTypes)
 
         this.customerMemberships = user.memberships
         this.customerClassPasses = user.class_passes
