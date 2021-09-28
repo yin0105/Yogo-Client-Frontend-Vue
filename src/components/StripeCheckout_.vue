@@ -59,6 +59,7 @@ export default {
       showStripeCheckout: true,
       buttonDisabled: true,
       spin: false,
+      customerId: null,
     };
   },
 
@@ -68,8 +69,9 @@ export default {
     console.log("result = ", result);
     const publishableKey = await YogoApi.get('/payments/stripe/get-publishable-key');
     this.clientSecret = result.clientSecret;
-    console.log("customerId = ", result.customerId);
-    if (result.customerId) {
+    this.customerId = result.customerId;
+    console.log("customerId = ", this.customerId);
+    if (this.customerId) {
       this.stripe = await loadStripe(publishableKey); 
     } else {
       this.stripe = await loadStripe(publishableKey,  {
