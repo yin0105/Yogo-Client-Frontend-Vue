@@ -50,7 +50,7 @@ import YogoApi from '../gateways/YogoApi';
 
 export default {
 
-  name: "StripeCheckout",
+  name: "StripeCheckoutRecurring",
   data() {
     return {
       card: null,
@@ -59,23 +59,28 @@ export default {
       showStripeCheckout: true,
       buttonDisabled: true,
       spin: false,
+      customerId: '',
     };
+  },
+
+  props: {
+      membership: Object,
+      amount: Number,
   },
 
   async mounted() {
     document.querySelector("#btnPayNow").disabled = true;
-    const result = await YogoApi.post('/payments/stripe/create-order-and-matching-session-type');
+    console.log("amount = ", this.amount );
+    const result = await YogoApi.post(`/payments/stripe/create-recurring-session/${this.amount}`);
     console.log("result = ", result);
     const publishableKey = await YogoApi.get('/payments/stripe/get-publishable-key');
     this.clientSecret = result.clientSecret;
-    console.log("customerId = ", result.customerId);
-    if (result.customerId) {
-      this.stripe = await loadStripe(publishableKey); 
-    } else {
-      this.stripe = await loadStripe(publishableKey,  {
-        stripeAccount: result.accountId
-      });    
-    }
+    this.customerId = result.customerId;
+    console.log("this.customerId = ", this.customerId);
+    console.log("this.membership = ", this.membership);
+    this.stripe = await loadStripe(publishableKey,  {
+      stripeAccount: result.accountId
+    });    
     const elements = this.stripe.elements();
     const style = {
         base: {
@@ -127,17 +132,17 @@ export default {
       }
       this.checkoutLoading(true);
       this.buttonDisabled = false;
+      const customerId = this.customerId;
+      const membershipId = this.membership.id;
       this.stripe.confirmCardPayment(this.clientSecret, {
           payment_method: {
             card: this.card
           },
           setup_future_usage: 'off_session'
         })
-        .then(function(result) {
+        .then(async function(result) {
           if (result.error) {
             // Show error to your customer
-            // parent.showError(result.error.message);
-            console.log("ERROR");
             let errorMsg = document.querySelector("#card-error");
             errorMsg.textContent = result.error.message;
             setTimeout(function() {
@@ -145,8 +150,19 @@ export default {
             }, 4000);
           } else {
             // The payment succeeded!
-            // this.orderComplete(result.paymentIntent.id);
-            console.log("paymentIntentId = ", result.paymentIntent.id);
+            console.log("paymentIntent.status = ", result.paymentIntent.status);
+            if (result.paymentIntent.status == "succeeded") {
+                const paymentMethodId = result.paymentIntent.payment_method;
+                console.log("paymentMethodId = ", paymentMethodId);
+                console.log("paymentIntent = ", result.paymentIntent);
+                console.log("customerId = ", customerId);
+
+                await YogoApi.post('/payments/stripe/attach-card-to-membership', {
+                    paymentIntentId: paymentMethodId,
+                    customerId: customerId,
+                    membership: membershipId,
+                });
+            }
             document
               .querySelector(".result-message a")
               .setAttribute(

@@ -319,7 +319,7 @@
 
         this.classPassTypes = _keyBy(classPassTypes, 'id')
 
-        console.log("membershipTypes = ", this.membershipTypes)
+        console.log("membershipTypes = ", this.membershipTypes);
         console.log("classPassTypes = ", this.classPassTypes)
 
         this.customerMemberships = user.memberships
@@ -338,12 +338,15 @@
           this.membershipTypes,
           mt => _find(mt.payment_options, 'for_sale'),
         )
+        console.log("membershipTypes_2 = ", this.membershipTypes);
 
         _each(this.membershipTypes, (membershipType) => {
           membershipType.payment_options = _filter(membershipType.payment_options, paymentOption => paymentOption.for_sale)
           membershipType.payment_options = _sortBy(membershipType.payment_options, 'number_of_months_payment_covers')
           this.selectedPaymentOption[membershipType.id] = membershipType.payment_options[0].id
         })
+
+        console.log("membershipTypes_3 = ", this.membershipTypes);
 
         this.selectedPriceGroup = null;
 

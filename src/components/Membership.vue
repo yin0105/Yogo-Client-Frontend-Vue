@@ -210,6 +210,8 @@
           {{ $t('membership.PauseMembership') }}
         </button>-->
 
+        <StripeCheckoutRecurring v-if="stripeCheckout.showStripeCheckout" v-bind.sync="stripeCheckout" ref="stripe_checkout"></StripeCheckoutRecurring>
+
       </div>
     </div>
 
@@ -237,12 +239,14 @@ import moment from 'moment';
 import avatar from '@/assets/img/account.svg';
 import dateTimeFunctions from '../mixins/dateTimeFunctions';
 import Alert from '@/components/Alert';
+import StripeCheckoutRecurring from './StripeCheckoutRecurring';
 
 export default {
   name: 'membership',
   components: {
     Alert,
     Loadingspinner,
+    StripeCheckoutRecurring
   },
   mixins: [dateTimeFunctions],
   data() {
@@ -275,6 +279,10 @@ export default {
 
       snackbarText: '',
       showSnackbar: false,
+
+      stripeCheckout: {
+        showStripeCheckout: false,
+      },
 
     };
   },
@@ -476,6 +484,7 @@ export default {
       }
     },
     async startChangeCreditCard() {
+      console.log("this.client.settings.payment_service_provider = ", this.client.settings.payment_service_provider);
       switch (this.client.settings.payment_service_provider) {
         case 'reepay': {
           const recurringSession = await YogoApi.post(
@@ -501,6 +510,39 @@ export default {
           this.reepayWindow.addEventHandler(window.Reepay.Event.Close, async () => {
             await this.$store.dispatch('updateUser');
           });
+          break;
+        }
+
+        case 'stripe': {
+          console.log("change card :: stripe");
+
+          // const recurringSession = await YogoApi.post('/payments/stripe/create-recurring-session/' + (this.membership.next_payment.amount * 100));
+          // this.stripeWindow = new window.Stripe.ModalCheckout(recurringSession.id);
+          this.stripeCheckout.showStripeCheckout = true;
+          this.stripeCheckout.membership = this.membership;
+          this.stripeCheckout.amount = this.membership.next_payment.amount * 100;
+
+          // this.stripeWindow.addEventHandler(window.Stripe.Event.Accept, async data => {
+          //   console.log('data:', data);
+          //   await YogoApi.post('/payments/stripe/attach-card-to-membership', {
+          //     cardId: data.payment_method,
+          //     membership: this.membership.id,
+          //   });
+          //   if (this.membership.renewal_failed) {
+          //     await this.retryPaymentWithCurrentPaymentMethod();
+          //   }
+          //   await this.getMembership();
+          // });
+
+          // this.stripeWindow.addEventHandler(window.Stripe.Event.Error, () => {
+          // });
+          // this.stripeWindow.addEventHandler(window.Stripe.Event.Cancel, () => {
+          // });
+          // this.stripeWindow.addEventHandler(window.Stripe.Event.Close, async () => {
+          //   await this.$store.dispatch('updateUser');
+          // });
+
+          break;
         }
       }
 

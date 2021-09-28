@@ -9,6 +9,6 @@ export default {
   externalCallbackUrl: 'https://yogo-api-dev.ngrok.io',
   // The clientId is needed for local development, where we don't have a custom domain.
   // In production and staging, client is determined by the caller domain.
-  clientId: 3,
+  clientId: 1,
   googleWebFontsApiKey: 'AIzaSyAJhI0KONbefxUhDd3U6EZTZTmYqzKcyZc',
 };
